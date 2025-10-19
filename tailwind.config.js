@@ -10,6 +10,12 @@ export default {
         'heading': ['Playfair Display', 'serif'],
         'body': ['Lato', 'sans-serif'],
       },
+      colors: {
+        primary: '#1a1a1a',
+        secondary: '#666666',
+        accent: '#f59e0b',
+        background: '#f8f9fa',
+      },
     },
   },
   plugins: [],
