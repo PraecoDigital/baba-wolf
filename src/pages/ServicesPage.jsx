@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Parse from '../lib/parseInit';
 import { Service } from '../lib/parse';
 import { Clock, DollarSign, Star } from 'lucide-react';
 import toast from 'react-hot-toast';

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Parse from '../lib/parseInit';
 import { Appointment, Subscription, Rating } from '../lib/parse';
 import { Calendar, CreditCard, Star, Clock, CheckCircle } from 'lucide-react';
 import { format } from 'date-fns';

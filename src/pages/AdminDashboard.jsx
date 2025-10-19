@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Parse from '../lib/parseInit';
 import { Service, Appointment, Rating } from '../lib/parse';
 import { Plus, Edit, Trash2, Star, Calendar, Users, DollarSign } from 'lucide-react';
 import { format } from 'date-fns';

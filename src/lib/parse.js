@@ -8,7 +8,9 @@ Parse.serverURL = BACK4APP_CONFIG.SERVER_URL;
 // Set REST API Key for server requests
 Parse.masterKey = BACK4APP_CONFIG.REST_API_KEY;
 
+// Export Parse as default and named export
 export default Parse;
+export { Parse };
 
 // Database Schema Classes
 export class User extends Parse.Object {

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import Parse, { User } from '../lib/parse.js';
+import Parse from '../lib/parseInit.js';
 
 const AuthContext = createContext();
 

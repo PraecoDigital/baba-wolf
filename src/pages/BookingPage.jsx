@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import Parse from '../lib/parseInit';
 import { Service, Appointment } from '../lib/parse';
 import { Calendar, Clock, DollarSign, User } from 'lucide-react';
 import { format, addDays, isSameDay, parseISO } from 'date-fns';
