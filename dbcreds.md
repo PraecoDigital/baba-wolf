@@ -1,0 +1,6 @@
+Application ID: fMlmz2s4JRoXP48g1zpFC9ubHImoU7psGVCz803O
+REST Key: g5bIkLjlvuXhFn6N2fVch4f6MMUvfXokiDtBykB7
+Javascript Key: tYKSsygRfSvs8exN3Ii8N68LyQ7y8fxHNAGvWcUd
+Server URL: https://parseapi.back4app.com
+
+B4A AcctKey: tv4Tsc3rkiheRkwASmU2VfjQMGn9O1HWaUti9YcU
