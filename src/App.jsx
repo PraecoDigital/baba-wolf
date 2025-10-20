@@ -1,51 +1,117 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import { AuthProvider } from './contexts/AuthContext';
-import Navbar from './components/Navbar';
-import HomePage from './pages/HomePage';
-import ServicesPage from './pages/ServicesPage';
-import ContactPage from './pages/ContactPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ProfilePage from './pages/ProfilePage';
-import AdminDashboard from './pages/AdminDashboard';
-import BookingPage from './pages/BookingPage';
-import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="bg-white shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-gray-800">
+    <div style={{ 
+      minHeight: '100vh', 
+      backgroundColor: '#f3f4f6', 
+      fontFamily: 'Arial, sans-serif' 
+    }}>
+      {/* Header */}
+      <div style={{ 
+        backgroundColor: 'white', 
+        boxShadow: '0 1px 3px rgba(0,0,0,0.1)', 
+        position: 'sticky', 
+        top: 0, 
+        zIndex: 50 
+      }}>
+        <div style={{ 
+          maxWidth: '1280px', 
+          margin: '0 auto', 
+          padding: '0 1rem' 
+        }}>
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            height: '4rem' 
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <h1 style={{ 
+                fontSize: '1.5rem', 
+                fontWeight: 'bold', 
+                color: '#1f2937' 
+              }}>
                 Black Sheep Barbershop
               </h1>
             </div>
-            <div className="flex items-center space-x-4">
-              <a href="/services" className="text-gray-600 hover:text-gray-900">Services</a>
-              <a href="/contact" className="text-gray-600 hover:text-gray-900">Contact</a>
-              <a href="/booking" className="bg-yellow-600 text-white px-4 py-2 rounded">Book Now</a>
+            <div style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '1rem' 
+            }}>
+              <a href="#services" style={{ 
+                color: '#6b7280', 
+                textDecoration: 'none' 
+              }}>Services</a>
+              <a href="#contact" style={{ 
+                color: '#6b7280', 
+                textDecoration: 'none' 
+              }}>Contact</a>
+              <a href="#booking" style={{ 
+                backgroundColor: '#d97706', 
+                color: 'white', 
+                padding: '0.5rem 1rem', 
+                borderRadius: '0.375rem', 
+                textDecoration: 'none' 
+              }}>Book Now</a>
             </div>
           </div>
         </div>
       </div>
       
-      <main className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+      {/* Main Content */}
+      <main style={{ padding: '5rem 0' }}>
+        <div style={{ 
+          maxWidth: '1280px', 
+          margin: '0 auto', 
+          padding: '0 1rem', 
+          textAlign: 'center' 
+        }}>
+          <h1 style={{ 
+            fontSize: '3rem', 
+            fontWeight: 'bold', 
+            color: '#111827', 
+            marginBottom: '1.5rem' 
+          }}>
             Welcome to Black Sheep Barbershop
           </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          <p style={{ 
+            fontSize: '1.25rem', 
+            color: '#6b7280', 
+            marginBottom: '2rem', 
+            maxWidth: '48rem', 
+            margin: '0 auto 2rem' 
+          }}>
             Where tradition meets modern style. Experience the finest in men's grooming with our professional barbers and premium services.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/booking" className="bg-yellow-600 text-white px-8 py-4 rounded text-lg hover:bg-yellow-700">
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            gap: '1rem', 
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <a href="#booking" style={{ 
+              backgroundColor: '#d97706', 
+              color: 'white', 
+              padding: '1rem 2rem', 
+              borderRadius: '0.375rem', 
+              textDecoration: 'none',
+              fontSize: '1.125rem',
+              display: 'inline-block'
+            }}>
               Book Your Appointment
             </a>
-            <a href="/services" className="border-2 border-yellow-600 text-yellow-600 px-8 py-4 rounded text-lg hover:bg-yellow-600 hover:text-white">
+            <a href="#services" style={{ 
+              border: '2px solid #d97706', 
+              color: '#d97706', 
+              padding: '1rem 2rem', 
+              borderRadius: '0.375rem', 
+              textDecoration: 'none',
+              fontSize: '1.125rem',
+              display: 'inline-block'
+            }}>
               View Services
             </a>
           </div>
