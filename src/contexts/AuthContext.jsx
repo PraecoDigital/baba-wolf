@@ -1,5 +1,19 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import Parse from '../lib/parseInit.js';
+
+// Lazy load Parse to avoid initialization errors
+let Parse = null;
+const loadParse = async () => {
+  if (!Parse) {
+    try {
+      const parseModule = await import('../lib/parseInit.js');
+      Parse = parseModule.default;
+    } catch (error) {
+      console.warn('Failed to load Parse:', error);
+      return null;
+    }
+  }
+  return Parse;
+};
 
 const AuthContext = createContext();
 
@@ -16,26 +30,43 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in
-    const currentUser = Parse.User.current();
-    if (currentUser) {
-      setUser(currentUser);
-    }
-    setLoading(false);
+    const initializeAuth = async () => {
+      try {
+        const ParseInstance = await loadParse();
+        if (ParseInstance) {
+          // Check if user is already logged in
+          const currentUser = ParseInstance.User.current();
+          if (currentUser) {
+            setUser(currentUser);
+          }
 
-    // Listen for authentication state changes
-    Parse.User.on('authenticated', (user) => {
-      setUser(user);
-    });
+          // Listen for authentication state changes
+          ParseInstance.User.on('authenticated', (user) => {
+            setUser(user);
+          });
 
-    Parse.User.on('loggedOut', () => {
-      setUser(null);
-    });
+          ParseInstance.User.on('loggedOut', () => {
+            setUser(null);
+          });
+        }
+      } catch (error) {
+        console.warn('Auth initialization failed:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeAuth();
   }, []);
 
   const signUp = async (email, password, fullName, phoneNumber) => {
     try {
-      const user = new Parse.User();
+      const ParseInstance = await loadParse();
+      if (!ParseInstance) {
+        return { success: false, error: 'Parse not available' };
+      }
+
+      const user = new ParseInstance.User();
       user.set('username', email);
       user.set('email', email);
       user.set('password', password);
@@ -53,7 +84,12 @@ export const AuthProvider = ({ children }) => {
 
   const signIn = async (email, password) => {
     try {
-      const result = await Parse.User.logIn(email, password);
+      const ParseInstance = await loadParse();
+      if (!ParseInstance) {
+        return { success: false, error: 'Parse not available' };
+      }
+
+      const result = await ParseInstance.User.logIn(email, password);
       setUser(result);
       return { success: true, user: result };
     } catch (error) {
@@ -63,7 +99,12 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      await Parse.User.logOut();
+      const ParseInstance = await loadParse();
+      if (!ParseInstance) {
+        return { success: false, error: 'Parse not available' };
+      }
+
+      await ParseInstance.User.logOut();
       setUser(null);
       return { success: true };
     } catch (error) {
