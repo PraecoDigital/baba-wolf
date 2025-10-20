@@ -14,5 +14,14 @@ export default defineConfig({
     commonjsOptions: {
       include: [/parse/, /node_modules/]
     }
+  },
+  resolve: {
+    alias: {
+      'events': 'events',
+      'util': 'util',
+      'stream': 'stream-browserify',
+      'buffer': 'buffer',
+      'process': 'process/browser'
+    }
   }
 })

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Parse from '../lib/parseInit';
-import { Service } from '../lib/parse';
 import { Clock, DollarSign, Star } from 'lucide-react';
 import toast from 'react-hot-toast';
 
@@ -16,7 +15,7 @@ const ServicesPage = () => {
   const fetchServices = async () => {
     try {
       setLoading(true);
-      const query = new Parse.Query(Service);
+      const query = new Parse.Query('Service');
       query.ascending('name');
       const results = await query.find();
       setServices(results);
